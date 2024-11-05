@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>embedded 방식</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+  </style>
 </head>
 <body>
-$END$
+<div onclick="hello();"></div>
 </body>
 </html>
+
+<script>
+  function hello(){
+    alert('hello');
+  }
+</script>
