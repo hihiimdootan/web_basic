@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        line-height: 50px;
+        border: 1px solid black;
+        text-align: center;   /*디브 사용 시 기본 글자 위치 및 굵기 세팅*/
+      }
+
+      .pressed {
+        background-color: gray;
+        color: white;
+      }
+
+      .normal {
+        background-color: white;
+        color: black;
+      }
+    </style>
+
+    <script>
+      function clicked(target) {
+        const buttons = document.getElementsByTagName("div")
+        for(let i = 0; i< buttons.length; i++) {
+            buttons[i].className = "normal";
+          }
+
+          target.className = "pressed";
+      }
+    </script>
+
+
+</head>
+<body>
+  <div class="normal" onmouseover="clicked(this)">html</div>
+  <div class="normal" onmouseover="clicked(this)">css</div>
+  <div class="normal" onmouseover="clicked(this)">javascript</div>
+</body>
+</html>
