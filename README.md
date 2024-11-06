@@ -8,7 +8,7 @@
 - 목록3
 
 ## 스샷
-![늑대](https://github.com/user-attachments/assets/7fec0706-0c8a-479a-9b9a-83c8e81236aa)
+<img src="https://github.com/user-attachments/assets/7fec0706-0c8a-479a-9b9a-83c8e81236aa" width="800px"/>
 
 
 ### 제목
