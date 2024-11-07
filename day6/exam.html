@@ -10,8 +10,8 @@
         background-image: url("asset/slugback.jpg");
         background-size: cover;
         position: absolute;
-        width: 500px;
-        height: 500px;
+        width: 800px;
+        height: 600px;
         border: 1px solid black;
       }
 
@@ -27,11 +27,24 @@
     </style>
 
     <script>
-      const bgWidth = 500;
-      const bgHeight = 500;
+      const bgWidth = 800;
+      const bgHeight = 600;
 
       const playerWidth = 50;
       const playerHeight = 50;
+
+      // onload : 화면 다 그리고 실행
+      $(() => {
+          initGame();
+      })
+
+      function initGame() {
+          score = 0;
+
+          setTimeout(() => {
+              $("#palyer").css("visibility", "visible");
+          }, 3000);
+      }
 
 
       function moveLeft() {
@@ -52,11 +65,11 @@
           if (playerLeft <0) {
               player. css("left", "0px");
           } else if(playerLeft + playerWidth > bgWidth) {
-            player.css("left", "450px");
+            player.css("left", "750px");
           } else if (playerTop < 0) {
               player.css("top", "0px");
-          } else if (playerTop + playerWidth > bgHeight) {
-            player.css("top", "450px");
+          } else if (playerTop + playerHeight > bgHeight) {
+            player.css("top", "550px");
           }
       }
 

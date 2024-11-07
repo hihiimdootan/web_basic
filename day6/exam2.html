@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+  </script>
+  <style>
+    #background {
+      background-image: url("asset/slugback.jpg");
+      background-size: cover;
+      position: absolute;
+      width: 800px;
+      height: 600px;
+      border: 1px solid black;
+    }
+
+    #player {
+      position: absolute;
+      left: 30px;
+      bottom: 0px;
+    }
+
+    .enemy {
+      position: absolute;
+      right: 10px;
+      bottom: 0px;
+    }
+
+    #score {
+      color: red;
+      font-size: 30px;
+      text-align: center;
+    }
+
+  </style>
+
+  <script>
+    const playerWidth = 50;
+    const playerHeight = 50;
+    let enemyRight = 10;
+
+    let enemySpeed = 10;
+    let isJumping = false;
+    let isSpawning = false;
+
+    let score = 0;
+
+    let die = false;
+
+
+    function jump() {
+      if (isJumping === true) {
+        return;
+      }
+
+      isJumping = true;
+      $("#player").animate({
+          bottom: "+=80px"
+      }, 500).animate({
+        bottom: "-=80px"
+      }, 500, () => {
+          isJumping = false;
+      })
+    }
+
+    function moveEnemy() {
+      $(".enemy").css("right", `+=${enemySpeed}5px`);
+
+      checkEnemyBounds();
+    }
+
+    function checkEnemyBounds() {
+      const player = $(".enemy");
+      const playerLeft = parseInt(player.css("left")); // 0px이라는 글자로 들어옴
+
+      if (playerLeft < -100) {
+        respawnEnemy();
+      }
+    }
+
+    function setScore(score) {
+      $("#score").text(`SCORE : ${score}`)
+    }
+
+    function respawnEnemy() {
+
+      if (isSpawning) {
+        return;
+      }
+
+      if (!isDie) {
+        score += 100;
+        setScore(score);
+      }
+
+      isSpawning = true;
+      enemySpeed = Math.random() * 5 + 5; // 0.0 ~ 1.0
+
+      const spawnTime = Math.random() * 1000 + 500; // 500 ~ 1500
+
+      setTimeout(() => {
+        $(".enemy").css("right", "-100px");
+        isSpawning = false;
+      }, spawnTime)
+    }
+
+    function checkGameOver() {
+        const playerX = parseInt($("#player").css("left"))
+        const playerY = parseInt($("#player").css("bottom"))
+    }
+
+    function gameLoop() {
+      moveEnemy();
+
+      if(checkGameOver()) {
+        isDie = true;
+      }
+      requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", (event) =>{
+      if(event.key === " ") {
+        jump();
+      }
+    })
+
+    $(() => {
+      gameLoop();
+    })
+  </script>
+
+</head>
+<body>
+  <div id="background">
+    <div id="player">
+      <img src="asset/slug.png" width="50px", height="50px">
+    </div>
+
+    <div class="enemy" id="enemy">
+      <img src="asset/enemy.png" width="100px">
+    </div>
+  </div>
+  <div id="score">
+    SCORE : 0
+  </div>
+</body>
+</html>
